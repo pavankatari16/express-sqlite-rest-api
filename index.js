@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
   res.status(200).send("User API is running");
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Start server only after DB is initialized
 initDb()
@@ -43,9 +43,9 @@ initDb()
       res.status(status).json({ message });
     });
 
-    app.listen(PORT, () => {
-      console.log(`Server started on port ${PORT}`);
-    });
+    app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server started on port ${PORT}`);
+  });
   })
   .catch((err) => {
     console.error("Failed to initialize database:", err);
